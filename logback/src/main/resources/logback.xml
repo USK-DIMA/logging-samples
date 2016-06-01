@@ -1,0 +1,40 @@
+<configuration>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy.MM.dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logback-example.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <FileNamePattern>logback-example_%i.log</FileNamePattern>
+            <MinIndex>1</MinIndex>
+            <MaxIndex>4</MaxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>1KB</MaxFileSize>
+        </triggeringPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5level %-10thread %-32.32logger{32} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="html" class="ch.qos.logback.core.FileAppender">
+        <file>logback-example.html</file>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}%level%thread%logger%msg</pattern>
+            </layout>
+        </encoder>
+    </appender>
+
+    <root level="trace">
+        <appender-ref ref="console" />
+        <appender-ref ref="file" />
+        <appender-ref ref="html" />
+    </root>
+
+    <logger name="ru.miet.logback.test" level="INFO"/>
+</configuration>

@@ -1,0 +1,4 @@
+rootProject.name = 'logging-examples'
+
+include 'jul', 'log4j', 'logback', 'acl'
+
